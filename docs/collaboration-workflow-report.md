@@ -1,22 +1,35 @@
 # Collaboration Workflow Report
+**Author:** Alireza Mirzaei
+**Email:** amirzaei7@myseneca.ca
+**Course:** CSP-451 — Summer 2026
 
-## 1) Issues Created
-List the 3 issues you created (one per feature) and what each issue requested.
+## Issues Created
+Three GitHub Issues were created before any branch work began:
+- Issue #1: [Feature] User Authentication — tracking the login UI and auth route work.
+- Issue #2: [Feature] Database Connection — tracking the DB stub implementation.
+- Issue #3: [Feature] API Endpoints — tracking the new REST modules.
 
-## 2) PR Summary (3 PRs)
-For each PR:
-- PR title
-- linked issue
-- key changes
-- screenshots included? (Y/N)
+## Pull Request Summaries
+PR #1 (feature/user-authentication to main): Improved public/login.js with email/password
+validation, added authService.js, and created the /api/auth/login endpoint. Merged via
+Squash and merge to keep main's history linear.
 
-## 3) Self-Review Evidence
-GitHub does not allow you to formally Approve or Request changes on your own PR,
-so all reviews on this checkpoint are comment-based. Explain:
-- at least 2 self-review comments per PR (what was said and why)
-- which PR had a critical self-review comment that required a follow-up commit,
-  and how you addressed it
-- how you ensured quality before merging (CI status checks, manual testing, etc.)
+PR #2 (feature/database-connection to main): Implemented connect() and query() in
+src/db/index.js reading from process.env, added /api/health/db, and provided .env.example.
 
-## 4) Merge Strategy
-Confirm you used **Squash and merge** and explain one benefit (clean history, easier rollback, etc.).
+PR #3 (feature/api-endpoints to main): Refactored api.js into a separate items.js
+module, added POST /api/items with input validation, and created validation middleware.
+
+## Review Evidence
+Each PR was self-reviewed. On PR #2, a critical review comment was left requesting that
+the connect() function return false on failure instead of throwing. A follow-up commit
+addressed this by wrapping the connection in a try/catch block.
+
+## Merge Strategy
+Squash and merge was used for all three PRs. This collapses feature-branch commits into
+one clean commit per feature on main, keeping the production history readable.
+
+## Lessons Learned
+Using branch protection rules prevented accidental direct pushes to main. Conventional
+commits made the PR descriptions easier to write because the intent of each change was
+already documented at commit time.

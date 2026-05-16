@@ -1,57 +1,33 @@
-# CSP-451 Web Starter — CheckPoint 2
+# CSP-451 Web Starter
 
-This repository is a **starter template** for practicing:
-- Git branching strategies (GitHub Flow / Git Flow-lite)
-- Pull Requests + review workflow
-- Intentional merge conflicts + manual resolution
-- Clean history using **Squash and merge**
+A Node.js Express web application for CSP-451 checkpoint work.
 
-> **Important — before first run.** `src/app.js` ships with intentional Git
-> conflict markers (the Step-8 conflict-resolution exercise). Running
-> `npm run dev` immediately will fail with a `SyntaxError: Unexpected token "<<"`.
-> Open `src/app.js`, remove the `<<<<<<< / ======= / >>>>>>>` markers and pick
-> the resolution you want to keep, then `git add src/app.js && git commit -m
-> "chore: remove sample conflict markers"`. See Walkthrough Step 2 for full
-> guidance.
+## Getting Started
 
-## Quick Start
+Install dependencies and run the app:
 
-```bash
-# 1. Remove the sample conflict markers in src/app.js first (see note above)
+\\\
 npm install
 npm run dev
-```
+\\\
 
-Open: http://localhost:3000
+## Authentication
+Adds user authentication with login validation and JWT-ready endpoints.
 
-## Structure
-
-- `src/app.js` — Express server entry
-- `src/routes/` — route modules
-- `src/controllers/` — controller functions
-- `src/services/` — reusable services (auth helpers, etc.)
-- `src/db/` — database module (starts as a stub)
-- `public/` — static UI (includes `/login`)
-- `docs/` — reports + screenshots checklist
-
-## Required Branches
-Create these branches exactly:
-- `feature/user-authentication`
-- `feature/database-connection`
-- `feature/api-endpoints`
-
-## Suggested Conflict Targets
-To intentionally create a merge conflict, edit the same lines in one of:
-- `README.md`
-- `src/app.js`
-- `src/routes/api.js`
-
-## How to Run Tests (lightweight)
-```bash
-npm test
-npm run lint
-```
-
+## Database Connection
+Implements the database connection module with environment-based config.
 
 ## API Endpoints
-This branch adds new REST API endpoints for items including GET, POST, and DELETE.
+Adds new REST API endpoints for items including GET, POST, and DELETE.
+
+## Environment Variables
+
+Copy \.env.example\ to \.env\ and fill in your values before running the app.
+
+| Variable | Description | Default |
+|---|---|---|
+| DB_HOST | Database server hostname | localhost |
+| DB_PORT | Database server port | 5432 |
+| DB_NAME | Database name | csp451db |
+| DB_USER | Database username | dbuser |
+| DB_PASSWORD | Database password | (empty) |
