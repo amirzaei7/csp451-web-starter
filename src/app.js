@@ -3,29 +3,23 @@ const express = require('express');
 const path = require('path');
 
 const { router: apiRouter } = require('./routes/api');
-const authRouter = require('./routes/auth');
 const { router: viewRouter } = require('./routes/views');
+const itemsRouter = require('./routes/items');
 
 const app = express();
 
-// Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Static frontend
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// Routes
 app.use('/', viewRouter);
 app.use('/api', apiRouter);
-app.use('/api/auth', authRouter);
+app.use('/api/items', itemsRouter);
 
-// 404 handler
 app.use((req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
-// Error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
   res.status(500).json({ error: 'Internal Server Error' });
