@@ -13,3 +13,12 @@ router.get("/health", (req, res) => {
 });
 
 module.exports = { router };
+
+const { isConnected, getConfig } = require('../db');
+
+router.get('/health/db', (req, res) => {
+  res.json({
+    status: isConnected() ? 'connected' : 'disconnected',
+    config: getConfig(),
+  });
+});
