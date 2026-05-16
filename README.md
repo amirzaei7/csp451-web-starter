@@ -51,3 +51,16 @@ To intentionally create a merge conflict, edit the same lines in one of:
 npm test
 npm run lint
 ```
+
+
+## Environment Variables
+
+Copy .env.example to .env and fill in your values before running the app.
+
+| Variable | Description | Default |
+|---|---|---|
+| DB_HOST | Database server hostname | localhost |
+| DB_PORT | Database server port | 5432 |
+| DB_NAME | Database name | csp451db |
+| DB_USER | Database username | dbuser |
+| DB_PASSWORD | Database password | (empty) |
