@@ -6,10 +6,8 @@ A Node.js Express web application for CSP-451 checkpoint work.
 
 Install dependencies and run the app:
 
-\\\
 npm install
 npm run dev
-\\\
 
 ## Authentication
 Adds user authentication with login validation and JWT-ready endpoints.
@@ -22,12 +20,4 @@ Adds new REST API endpoints for items including GET, POST, and DELETE.
 
 ## Environment Variables
 
-Copy \.env.example\ to \.env\ and fill in your values before running the app.
-
-| Variable | Description | Default |
-|---|---|---|
-| DB_HOST | Database server hostname | localhost |
-| DB_PORT | Database server port | 5432 |
-| DB_NAME | Database name | csp451db |
-| DB_USER | Database username | dbuser |
-| DB_PASSWORD | Database password | (empty) |
+Copy .env.example to .env and fill in your values before running the app.
