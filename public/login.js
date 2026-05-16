@@ -1,24 +1,48 @@
-/**
- * Starter login behavior (minimal).
- * Feature branch: feature/user-authentication should add:
- * - better validation (inline errors)
- * - UI feedback states (loading, success, failure)
- * - optional: call an API endpoint (e.g., POST /api/auth/login)
- */
-const form = document.getElementById("loginForm");
-const message = document.getElementById("message");
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+function validatePassword(password) {
+  return password.length >= 8;
+}
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  if (!form) return;
 
-  // Minimal checks (students can improve)
-  if (!email || password.length < 6) {
-    message.textContent = "Please enter a valid email and a password (min 6 characters).";
-    return;
-  }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const errorDiv = document.getElementById('error-message') || document.createElement('div');
+    errorDiv.id = 'error-message';
+    errorDiv.style.color = 'red';
+    form.appendChild(errorDiv);
 
-  message.textContent = "Login submitted (stub). Implement authentication in your feature branch.";
+    if (!validateEmail(email)) {
+      errorDiv.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    if (!validatePassword(password)) {
+      errorDiv.textContent = 'Password must be at least 8 characters.';
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        window.location.href = '/';
+      } else {
+        errorDiv.textContent = data.message || 'Login failed.';
+      }
+    } catch (err) {
+      errorDiv.textContent = 'Network error. Please try again.';
+    }
+  });
 });

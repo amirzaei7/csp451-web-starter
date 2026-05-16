@@ -51,3 +51,7 @@ To intentionally create a merge conflict, edit the same lines in one of:
 npm test
 npm run lint
 ```
+
+
+## Authentication
+This branch adds user authentication with login validation and JWT-ready endpoints.
